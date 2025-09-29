@@ -1,6 +1,6 @@
-import Concreto from "./Concreto";
+import { Concreto } from "./Concreto";
 
-class MaterialConcreto {
+export class MaterialConcreto {
   private material: string;
   private dosificacion: string;
   private oneConcreto: Concreto;
@@ -50,5 +50,3 @@ class MaterialConcreto {
     this.allConcreto = allConcreto;
   }
 }
-
-export default MaterialConcreto;

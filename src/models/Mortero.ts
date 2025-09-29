@@ -1,4 +1,4 @@
-class Mortero {
+export class Mortero {
   private tipo: string;
   private cemento: number;
   private arena: number;

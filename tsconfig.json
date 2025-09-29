@@ -9,7 +9,7 @@
     "declarationMap": true, // ✅ Mapas para debugging de tipos
     "sourceMap": true, // ✅ Mapas para debugging de código
     "outDir": "./dist", // ✅ Donde van los archivos compilados
-    "rootDir": "./", // ✅ Raíz de los archivos fuente
+    "rootDir": "./src", // ✅ Raíz de los archivos fuente
 
     /* Configuración de Tipos */
     "strict": true, // ✅ Todas las verificaciones estrictas

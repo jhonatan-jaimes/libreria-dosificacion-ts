@@ -1,6 +1,6 @@
-import Mortero from "./Mortero";
+import { Mortero } from "./Mortero";
 
-class Concreto extends Mortero {
+export class Concreto extends Mortero {
   private grava: number;
 
   constructor(
@@ -22,5 +22,3 @@ class Concreto extends Mortero {
     this.grava = grava;
   }
 }
-
-export default Concreto;

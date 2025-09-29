@@ -1,6 +1,6 @@
-import Mortero from "./Mortero";
+import { Mortero } from "./Mortero";
 
-class MaterialMortero {
+export class MaterialMortero {
   material: string;
   dosificacion: string;
   oneMortero: Mortero;
@@ -50,5 +50,3 @@ class MaterialMortero {
     this.allMortero = allMortero;
   }
 }
-
-export default MaterialMortero;

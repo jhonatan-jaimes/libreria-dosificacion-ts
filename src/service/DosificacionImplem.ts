@@ -1,10 +1,10 @@
-import Concreto from "../models/Concreto";
-import MaterialConcreto from "../models/MaterialConcreto";
-import MaterialMortero from "../models/MaterialMortero";
-import Mortero from "../models/Mortero";
-import DosificacionService from "./DosificacionService";
+import { Concreto } from "../models";
+import { MaterialConcreto } from "../models";
+import { MaterialMortero } from "../models";
+import { Mortero } from "../models";
+import { DosificacionService } from "./DosificacionService";
 
-class DosificacionImplem implements DosificacionService {
+export class DosificacionImplem implements DosificacionService {
   calcularMortero(area: number, dosificacion: string): MaterialMortero {
     return new MaterialMortero(
       area.toString(),
@@ -22,5 +22,3 @@ class DosificacionImplem implements DosificacionService {
     );
   }
 }
-
-export default DosificacionImplem;
