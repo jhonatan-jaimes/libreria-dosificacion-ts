@@ -1,7 +1,6 @@
-import { MaterialConcreto } from "../models";
-import { MaterialMortero } from "../models";
+import { ElementoMortero, ElementoConcreto } from "../models";
 
 export interface DosificacionService {
-  calcularMortero(area: number, dosificacion: string): MaterialMortero;
-  calcularConcreto(area: number, dosificacion: string): MaterialConcreto;
+  calcularMortero(area: number, dosificacion: string): ElementoMortero;
+  calcularConcreto(area: number, dosificacion: string): ElementoConcreto;
 }
