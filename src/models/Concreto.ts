@@ -1,7 +1,7 @@
-import Mortero from "./Mortero.ts";
+import Mortero from "./Mortero";
 
 class Concreto extends Mortero {
-  grava: number;
+  private grava: number;
 
   constructor(
     tipo: string,
@@ -16,6 +16,10 @@ class Concreto extends Mortero {
 
   getGrava(): number {
     return this.grava;
+  }
+
+  setGrava(grava: number): void {
+    this.grava = grava;
   }
 }
 

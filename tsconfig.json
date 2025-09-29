@@ -1,0 +1,58 @@
+{
+  "compilerOptions": {
+    /* Lenguaje y Entorno */
+    "target": "ES2020", // Compatibilidad moderna
+    "lib": ["ES2020", "DOM"], // APIs disponibles
+    "module": "CommonJS", // Sistema de módulos
+    /* Generación de Archivos */
+    "declaration": true, // ✅ Genera .d.ts
+    "declarationMap": true, // ✅ Mapas para debugging de tipos
+    "sourceMap": true, // ✅ Mapas para debugging de código
+    "outDir": "./dist", // ✅ Donde van los archivos compilados
+    "rootDir": "./", // ✅ Raíz de los archivos fuente
+
+    /* Configuración de Tipos */
+    "strict": true, // ✅ Todas las verificaciones estrictas
+    "esModuleInterop": true, // ✅ Compatibilidad con módulos CommonJS/ES6
+    "skipLibCheck": true, // ✅ Salta verificación de librerías
+    "forceConsistentCasingInFileNames": true, // ✅ Nombres de archivo consistentes
+
+    /* Características Adicionales */
+    "allowSyntheticDefaultImports": true, // ✅ Importaciones por defecto sintéticas
+    "resolveJsonModule": true, // ✅ Importar archivos JSON
+    "removeComments": false, // ❌ Mantener comentarios (útil para usuarios)
+
+    /* Configuraciones de Calidad de Código */
+    "noUnusedLocals": true, // ✅ Error en variables no usadas
+    "noUnusedParameters": true, // ✅ Error en parámetros no usados
+    "exactOptionalPropertyTypes": true, // ✅ Tipos opcionales exactos
+    "noImplicitReturns": true, // ✅ Error en returns implícitos
+    "noFallthroughCasesInSwitch": true, // ✅ Error en fallthrough en switch
+
+    /* Emitición */
+    "newLine": "lf", // ✅ Saltos de línea consistentes
+    "stripInternal": true, // ✅ No emitir código marcado como @internal
+
+    /* Path Mapping (Opcional pero recomendado) */
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"],
+      "@utils/*": ["src/utils/*"],
+      "@services/*": ["src/services/*"]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "index.ts" // ✅ Incluir index.ts raíz si existe
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "**/__tests__/**"
+  ],
+  "ts-node": {
+    "transpileOnly": true // ✅ Para desarrollo con ts-node
+  }
+}

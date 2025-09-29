@@ -1,4 +1,4 @@
-import Mortero from "./Mortero.ts";
+import Mortero from "./Mortero";
 
 class MaterialMortero {
   material: string;
@@ -22,16 +22,32 @@ class MaterialMortero {
     return this.material;
   }
 
+  setMaterial(material: string): void {
+    this.material = material;
+  }
+
   getDosificacion(): string {
     return this.dosificacion;
+  }
+
+  setDosificacion(dosificacion: string): void {
+    this.dosificacion = dosificacion;
   }
 
   getOneMortero(): Mortero {
     return this.oneMortero;
   }
 
+  setOneMortero(oneMortero: Mortero): void {
+    this.oneMortero = oneMortero;
+  }
+
   getAllMortero(): Mortero {
     return this.allMortero;
+  }
+
+  setAllMortero(allMortero: Mortero): void {
+    this.allMortero = allMortero;
   }
 }
 

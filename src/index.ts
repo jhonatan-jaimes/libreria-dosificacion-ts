@@ -1,0 +1,1 @@
+export { dosificacion } from "./service";
