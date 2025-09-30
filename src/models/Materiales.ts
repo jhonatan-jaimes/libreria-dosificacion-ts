@@ -1,4 +1,6 @@
-export class Mortero {
+export interface Dosificacion {}
+
+export class Mortero implements Dosificacion {
   private tipo: string;
   private cemento: number;
   private arena: number;

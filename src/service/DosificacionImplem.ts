@@ -1,8 +1,23 @@
-import { Mortero, Concreto } from "../models";
+import { Mortero, Concreto, Dosificacion } from "../models";
 import { ElementoMortero, ElementoConcreto } from "../models";
 import { DosificacionService } from "./DosificacionService";
+import { tablaMortero, tablaConcreto } from "../utils";
 
 export class DosificacionImplem implements DosificacionService {
+  static getDosificacion(dosifi: string, material: string): Dosificacion {
+    if (material.toLowerCase() === "mortero") {
+      const dosi = tablaMortero[dosifi];
+      dosi.setTipo(material);
+      return dosi;
+    } else if (material.toLowerCase() === "concreto") {
+      const dosi = tablaConcreto[dosifi];
+      dosi.setTipo(material);
+      return dosi;
+    } else {
+      throw new Error("Dosificacion no encontrada " + dosifi);
+    }
+  }
+
   calcularMortero(area: number, dosificacion: string): ElementoMortero {
     return new ElementoMortero(
       area.toString(),

@@ -1,1 +1,1 @@
-export { TablaMortero, TablaConcreto } from "./Bibliotecas";
+export { tablaMortero, tablaConcreto } from "./Bibliotecas";
