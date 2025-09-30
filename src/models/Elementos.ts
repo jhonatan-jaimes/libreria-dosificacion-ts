@@ -1,6 +1,8 @@
 import { Mortero, Concreto } from "./Materiales";
 
-export class ElementoMortero {
+export interface Material {}
+
+export class ElementoMortero implements Material {
   material: string;
   dosificacion: string;
   oneMortero: Mortero;
@@ -51,7 +53,7 @@ export class ElementoMortero {
   }
 }
 
-export class ElementoConcreto {
+export class ElementoConcreto implements Material {
   private material: string;
   private dosificacion: string;
   private oneConcreto: Concreto;

@@ -1,37 +1,56 @@
 import { Mortero, Concreto, Dosificacion } from "../models";
-import { ElementoMortero, ElementoConcreto } from "../models";
+import { ElementoMortero, ElementoConcreto, Material } from "../models";
 import { DosificacionService } from "./DosificacionService";
 import { tablaMortero, tablaConcreto } from "../utils";
 
-export class DosificacionImplem implements DosificacionService {
-  static getDosificacion(dosifi: string, material: string): Dosificacion {
-    if (material.toLowerCase() === "mortero") {
-      const dosi = tablaMortero[dosifi];
-      dosi.setTipo(material);
-      return dosi;
-    } else if (material.toLowerCase() === "concreto") {
-      const dosi = tablaConcreto[dosifi];
-      dosi.setTipo(material);
-      return dosi;
-    } else {
-      throw new Error("Dosificacion no encontrada " + dosifi);
-    }
+const getDosificacion = (dosifi: string, material: string): Dosificacion => {
+  if (material.toLowerCase() === "mortero") {
+    const dosi = tablaMortero[dosifi];
+    dosi.setTipo(material);
+    return dosi;
+  } else if (material.toLowerCase() === "concreto") {
+    const dosi = tablaConcreto[dosifi];
+    dosi.setTipo(material);
+    return dosi;
+  } else {
+    throw new Error("Dosificacion no encontrada " + dosifi);
   }
+};
 
-  calcularMortero(area: number, dosificacion: string): ElementoMortero {
+const calcularDosificacion = (dosi: Dosificacion, area: number): Material => {
+  if (dosi instanceof Mortero) {
+    const cemento = area * dosi.getCemento();
+    const arena = area * dosi.getArena();
+    const agua = area * dosi.getAgua();
     return new ElementoMortero(
-      area.toString(),
-      dosificacion,
-      new Mortero("sa", 33, 33, 33),
-      new Mortero("w4", 44, 44, 44)
+      dosi.getTipo(),
+      dosi.getTipo(),
+      new Mortero(dosi.getTipo(), cemento, arena, agua),
+      new Mortero(dosi.getTipo(), cemento, arena, agua)
     );
-  }
-  calcularConcreto(area: number, dosificacion: string): ElementoConcreto {
+  } else if (dosi instanceof Concreto) {
+    const cemento = area * dosi.getCemento();
+    const arena = area * dosi.getArena();
+    const grava = area * dosi.getGrava();
+    const agua = area * dosi.getAgua();
     return new ElementoConcreto(
-      area.toString(),
-      dosificacion,
-      new Concreto("sa", 33, 33, 33, 33),
-      new Concreto("w4", 44, 44, 44, 44)
+      dosi.getTipo(),
+      dosi.getTipo(),
+      new Concreto(dosi.getTipo(), cemento, arena, grava, agua),
+      new Concreto(dosi.getTipo(), cemento, arena, grava, agua)
     );
+  } else {
+    throw new Error("Elemento no se puede calcular");
+  }
+};
+
+export class DosificacionImplem implements DosificacionService {
+  calcularMaterial(
+    area: number,
+    dosificacion: string,
+    material: string
+  ): Material {
+    const dosi = getDosificacion(dosificacion, material);
+    return calcularDosificacion(dosi, area);
   }
 }
