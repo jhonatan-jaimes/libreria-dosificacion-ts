@@ -32,14 +32,6 @@
     /* Emitición */
     "newLine": "lf", // ✅ Saltos de línea consistentes
     "stripInternal": true, // ✅ No emitir código marcado como @internal
-
-    /* Path Mapping (Opcional pero recomendado) */
-    "baseUrl": "./",
-    "paths": {
-      "@/*": ["src/*"],
-      "@utils/*": ["src/utils/*"],
-      "@services/*": ["src/services/*"]
-    }
   },
   "include": [
     "src/**/*.ts",

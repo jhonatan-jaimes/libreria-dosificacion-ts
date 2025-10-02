@@ -1,4 +1,4 @@
-import { DosificacionService } from "./DosificacionService";
-import { DosificacionImplem } from "./DosificacionImplem";
+import { MaterialesService } from "./MaterialesService";
+import { MaterialesImplement } from "./MaterialesImplement";
 
-export const dosificacion: DosificacionService = new DosificacionImplem();
+export const material: MaterialesService = new MaterialesImplement();

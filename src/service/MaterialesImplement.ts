@@ -1,6 +1,6 @@
 import { Mortero, Concreto, Dosificacion } from "../models";
 import { ElementoMortero, ElementoConcreto, Material } from "../models";
-import { DosificacionService } from "./DosificacionService";
+import { MaterialesService } from "./MaterialesService";
 import { tablaMortero, tablaConcreto } from "../utils";
 
 function getDosificacion(dosifi: string, material: string): Dosificacion {
@@ -18,6 +18,8 @@ function getDosificacion(dosifi: string, material: string): Dosificacion {
     throw new Error("Dosificacion no encontrada " + dosifi);
   }
 }
+
+// las cosass no pueden ser igual a antes
 
 function calcularDosificacion(dosi: Dosificacion, area: number): Material {
   if (dosi instanceof Concreto) {
@@ -48,7 +50,10 @@ function calcularDosificacion(dosi: Dosificacion, area: number): Material {
   }
 }
 
-export class DosificacionImplem implements DosificacionService {
+export class MaterialesImplement implements MaterialesService {
+  ladrillo(muro: number, altura: number, ladrillos: number): number {
+    throw new Error("Method not implemented.");
+  }
   mortero(area: number, dosificacion: string): ElementoMortero {
     const dosi = getDosificacion(dosificacion, "mortero");
 

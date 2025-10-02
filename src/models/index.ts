@@ -1,2 +1,2 @@
-export { Mortero, Concreto, Dosificacion } from "./Materiales";
+export { Mortero, Concreto, Dosificacion } from "../utils/Materiales";
 export { ElementoMortero, ElementoConcreto, Material } from "./Elementos";

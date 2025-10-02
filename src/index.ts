@@ -1,1 +1,1 @@
-export { dosificacion } from "./service";
+export { material } from "./service";
