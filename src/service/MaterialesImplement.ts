@@ -21,7 +21,7 @@ function getDosificacion(dosifi: string, material: string): Dosificacion {
 
 // las cosass no pueden ser igual a antes
 
-function calcularDosificacion(dosi: Dosificacion, area: number): Material {
+function calcularDosificacion(dosi: Dosificacion, area: number, cantidad: number): Material {
   if (dosi instanceof Concreto) {
     const cemento = area * dosi.getCemento();
     const arena = area * dosi.getArena();
@@ -32,7 +32,12 @@ function calcularDosificacion(dosi: Dosificacion, area: number): Material {
       dosi.getTipo(),
       dosi.getTipo(),
       new Concreto(dosi.getTipo(), cemento, arena, grava, agua),
-      new Concreto(dosi.getTipo(), cemento, arena, grava, agua)
+      new Concreto(
+        dosi.getTipo(), 
+        cemento * cantidad, 
+        arena * cantidad, 
+        grava * cantidad, 
+        agua * cantidad)
     );
   } else if (dosi instanceof Mortero) {
     const cemento = area * dosi.getCemento();
@@ -43,7 +48,11 @@ function calcularDosificacion(dosi: Dosificacion, area: number): Material {
       dosi.getTipo(),
       dosi.getTipo(),
       new Mortero(dosi.getTipo(), cemento, arena, agua),
-      new Mortero(dosi.getTipo(), cemento, arena, agua)
+      new Mortero(
+        dosi.getTipo(), 
+        cemento * cantidad, 
+        arena * cantidad, 
+        agua * cantidad)
     );
   } else {
     throw new Error("Elemento no se puede calcular");
@@ -54,14 +63,14 @@ export class MaterialesImplement implements MaterialesService {
   ladrillo(muro: number, altura: number, ladrillos: number): number {
     throw new Error("Method not implemented.");
   }
-  mortero(area: number, dosificacion: string): ElementoMortero {
+  mortero(area: number, dosificacion: string, cantidad: number): ElementoMortero {
     const dosi = getDosificacion(dosificacion, "mortero");
 
-    return calcularDosificacion(dosi, area) as ElementoMortero;
+    return calcularDosificacion(dosi, area, cantidad) as ElementoMortero;
   }
-  concreto(area: number, dosificacion: string): ElementoConcreto {
+  concreto(area: number, dosificacion: string, cantidad: number): ElementoConcreto {
     const dosi = getDosificacion(dosificacion, "concreto");
 
-    return calcularDosificacion(dosi, area) as ElementoConcreto;
+    return calcularDosificacion(dosi, area, cantidad) as ElementoConcreto;
   }
 }
