@@ -2,56 +2,57 @@ import { Mortero, Concreto, Dosificacion } from "../models";
 import { ElementoMortero, ElementoConcreto, Material } from "../models";
 import { MaterialesService } from "./MaterialesService";
 import { tablaMortero, tablaConcreto } from "../utils";
+import { Constantes } from "../utils";
 
-function getDosificacion(dosifi: string, material: string): Dosificacion {
+function getDosificacion(dosificacion: string, material: string): Dosificacion {
   if (material.toLowerCase() == "mortero") {
-    const dosi = tablaMortero[dosifi];
+    const dosi = tablaMortero[dosificacion];
     dosi.setTipo(material);
 
     return dosi;
   } else if (material.toLowerCase() == "concreto") {
-    const dosi = tablaConcreto[dosifi];
+    const dosi = tablaConcreto[dosificacion];
     dosi.setTipo(material);
 
     return dosi;
   } else {
-    throw new Error("Dosificacion no encontrada " + dosifi);
+    throw new Error("Dosificacion no encontrada " + dosificacion);
   }
 }
 
 // las cosass no pueden ser igual a antes
 
-function calcularDosificacion(dosi: Dosificacion, area: number, cantidad: number): Material {
-  if (dosi instanceof Concreto) {
-    const cemento = area * dosi.getCemento();
-    const arena = area * dosi.getArena();
-    const grava = area * dosi.getGrava();
-    const agua = area * dosi.getAgua();
+function calcularDosificacion(material: Dosificacion, dosificacion: string, area: number, cantidad: number): Material {
+  if (material instanceof Concreto) {
+    const cemento = area * material.getCemento();
+    const arena = area * material.getArena();
+    const grava = area * material.getGrava();
+    const agua = area * material.getAgua();
 
     return new ElementoConcreto(
-      dosi.getTipo(),
-      dosi.getTipo(),
-      new Concreto(dosi.getTipo(), cemento, arena, grava, agua),
+      material.getTipo(),
+      dosificacion,
+      new Concreto("unidad", cemento, arena, grava, agua),
       new Concreto(
-        dosi.getTipo(), 
-        cemento * cantidad, 
-        arena * cantidad, 
-        grava * cantidad, 
+        "total",
+        cemento * cantidad,
+        arena * cantidad,
+        grava * cantidad,
         agua * cantidad)
     );
-  } else if (dosi instanceof Mortero) {
-    const cemento = area * dosi.getCemento();
-    const arena = area * dosi.getArena();
-    const agua = area * dosi.getAgua();
+  } else if (material instanceof Mortero) {
+    const cemento = area * material.getCemento();
+    const arena = area * material.getArena();
+    const agua = area * material.getAgua();
 
     return new ElementoMortero(
-      dosi.getTipo(),
-      dosi.getTipo(),
-      new Mortero(dosi.getTipo(), cemento, arena, agua),
+      material.getTipo(),
+      dosificacion,
+      new Mortero("unidad", cemento, arena, agua),
       new Mortero(
-        dosi.getTipo(), 
-        cemento * cantidad, 
-        arena * cantidad, 
+        "total",
+        cemento * cantidad,
+        arena * cantidad,
         agua * cantidad)
     );
   } else {
@@ -60,17 +61,17 @@ function calcularDosificacion(dosi: Dosificacion, area: number, cantidad: number
 }
 
 export class MaterialesImplement implements MaterialesService {
-  ladrillo(muro: number, altura: number, ladrillos: number): number {
+  ladrillo(medida: number, altura: number, ladrillos: number): number {
     throw new Error("Method not implemented.");
   }
   mortero(area: number, dosificacion: string, cantidad: number): ElementoMortero {
-    const dosi = getDosificacion(dosificacion, "mortero");
+    const dosi = getDosificacion(dosificacion, Constantes.MORTERO);
 
-    return calcularDosificacion(dosi, area, cantidad) as ElementoMortero;
+    return calcularDosificacion(dosi, dosificacion, area, cantidad) as ElementoMortero;
   }
   concreto(area: number, dosificacion: string, cantidad: number): ElementoConcreto {
-    const dosi = getDosificacion(dosificacion, "concreto");
+    const dosi = getDosificacion(dosificacion, Constantes.CONCRETO);
 
-    return calcularDosificacion(dosi, area, cantidad) as ElementoConcreto;
+    return calcularDosificacion(dosi, dosificacion, area, cantidad) as ElementoConcreto;
   }
 }
