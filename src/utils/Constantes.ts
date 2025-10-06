@@ -17,3 +17,15 @@ export enum Transform {
     MILIMETROS3_TO_METROS3 = 1000000000,
     METROS3_TO_MILIMETROS3 = MILIMETROS3_TO_METROS3
 }
+
+export enum Ladrillo {
+    STANDAR = "standar",
+    GALLETA = "galleta",
+    BLOCK_CONCRETO = "block concreto"
+}
+
+export enum Block {
+    STANDAR = 0.01,
+    GALLETA = 0.06,
+    BLOCK_CONCRETO = 0.06
+}

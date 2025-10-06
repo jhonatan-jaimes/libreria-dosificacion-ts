@@ -1,7 +1,7 @@
 import { Mortero, Concreto, Dosificacion } from "../models";
 import { ElementoMortero, ElementoConcreto, Material } from "../models";
 import { MaterialesService } from "./MaterialesService";
-import { tablaMortero, tablaConcreto, Recurso, Area, Transform } from "../utils";
+import { tablaMortero, tablaConcreto, Recurso, Area, Transform, Ladrillo, Block } from "../utils";
 
 function getDosificacion(dosificacion: string, material: string): Dosificacion {
   if (material.toLowerCase() == Recurso.MORTERO) {
@@ -69,9 +69,30 @@ function calcularDosificacion(material: Dosificacion, dosificacion: string, area
   }
 }
 
+function calcularMuro(medida: number, altura: number): number {
+  const area = Math.round(((medida * Transform.METROS_TO_MILIMETROS) * (altura * Transform.METROS_TO_MILIMETROS) 
+    / Transform.MILIMETROS2_TO_METROS2) * 100) / 100;
+  return area;
+}
+
+function calcularLadrillos(area: number, ladrillo: string): number {
+  const name = ladrillo.toLowerCase();
+  switch(name) {
+    case Ladrillo.STANDAR : {
+      return Math.round(((area * Transform.METROS2_TO_MILIMETROS2) / (Block.STANDAR * Transform.METROS2_TO_MILIMETROS2)) 
+        * 100) / 100;
+    }
+    default : {
+      throw new Error("Ladrillo no encontrado " + ladrillo);
+    }
+  }
+}
+
 export class MaterialesImplement implements MaterialesService {
-  ladrillo(medida: number, altura: number, ladrillos: number): number {
-    throw new Error("Method not implemented.");
+  ladrillo(medida: number, altura: number, ladrillo: string): number {
+    const area = calcularMuro(medida, altura);
+
+    return calcularLadrillos(area, ladrillo);
   }
   mortero(area: number, dosificacion: string, cantidad: number): ElementoMortero {
     const dosi = getDosificacion(dosificacion, Recurso.MORTERO);
