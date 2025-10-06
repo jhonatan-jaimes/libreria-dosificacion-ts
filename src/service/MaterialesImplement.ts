@@ -1,15 +1,15 @@
 import { Mortero, Concreto, Dosificacion } from "../models";
 import { ElementoMortero, ElementoConcreto, Material } from "../models";
 import { MaterialesService } from "./MaterialesService";
-import { tablaMortero, tablaConcreto, Recurso, Area } from "../utils";
+import { tablaMortero, tablaConcreto, Recurso, Area, Transform } from "../utils";
 
 function getDosificacion(dosificacion: string, material: string): Dosificacion {
-  if (material.toLowerCase() == "mortero") {
+  if (material.toLowerCase() == Recurso.MORTERO) {
     const dosi = tablaMortero[dosificacion];
     dosi.setTipo(material);
 
     return dosi;
-  } else if (material.toLowerCase() == "concreto") {
+  } else if (material.toLowerCase() == Recurso.CONCRETO) {
     const dosi = tablaConcreto[dosificacion];
     dosi.setTipo(material);
 
@@ -21,10 +21,17 @@ function getDosificacion(dosificacion: string, material: string): Dosificacion {
 
 function calcularDosificacion(material: Dosificacion, dosificacion: string, area: number, cantidad: number): Material {
   if (material instanceof Concreto) {
-    const cemento = area * material.getCemento();
-    const arena = area * material.getArena();
-    const grava = area * material.getGrava();
-    const agua = area * material.getAgua();
+    const cemento = Math.round(((area * Transform.METROS_TO_MILIMETROS) *
+      (material.getCemento() * Transform.METROS_TO_MILIMETROS) / Transform.MILIMETROS2_TO_METROS2) * 100) / 100;
+
+    const arena = Math.round(((area * Transform.METROS_TO_MILIMETROS) *
+      (material.getArena() * Transform.METROS_TO_MILIMETROS) / Transform.MILIMETROS2_TO_METROS2) * 100) / 100;
+
+    const grava = Math.round(((area * Transform.METROS_TO_MILIMETROS) *
+      (material.getGrava() * Transform.METROS_TO_MILIMETROS) / Transform.MILIMETROS2_TO_METROS2) * 100) / 100;
+
+    const agua = Math.round(((area * Transform.METROS_TO_MILIMETROS) *
+      (material.getAgua() * Transform.METROS_TO_MILIMETROS) / Transform.MILIMETROS2_TO_METROS2) * 100) / 100;
 
     return new ElementoConcreto(
       material.getTipo(),
@@ -38,9 +45,14 @@ function calcularDosificacion(material: Dosificacion, dosificacion: string, area
         agua * cantidad)
     );
   } else if (material instanceof Mortero) {
-    const cemento = area * material.getCemento();
-    const arena = area * material.getArena();
-    const agua = area * material.getAgua();
+    const cemento = Math.round(((area * Transform.METROS_TO_MILIMETROS) *
+      (material.getCemento() * Transform.METROS_TO_MILIMETROS) / Transform.MILIMETROS2_TO_METROS2) * 100) / 100;
+
+    const arena = Math.round(((area * Transform.METROS_TO_MILIMETROS) *
+      (material.getArena() * Transform.METROS_TO_MILIMETROS) / Transform.MILIMETROS2_TO_METROS2) * 100) / 100;
+
+    const agua = Math.round(((area * Transform.METROS_TO_MILIMETROS) *
+      (material.getAgua() * Transform.METROS_TO_MILIMETROS) / Transform.MILIMETROS2_TO_METROS2) * 100) / 100;
 
     return new ElementoMortero(
       material.getTipo(),
