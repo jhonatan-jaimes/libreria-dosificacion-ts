@@ -5,12 +5,12 @@ import { tablaMortero, tablaConcreto, Recurso, Area, Transform, Ladrillo, Block 
 
 function getDosificacion(dosificacion: string, material: string): Dosificacion {
   if (material.toLowerCase() == Recurso.MORTERO) {
-    const dosi = tablaMortero[dosificacion];
+    const dosi = tablaMortero(dosificacion);
     dosi.setTipo(material);
 
     return dosi;
   } else if (material.toLowerCase() == Recurso.CONCRETO) {
-    const dosi = tablaConcreto[dosificacion];
+    const dosi = tablaConcreto(dosificacion);
     dosi.setTipo(material);
 
     return dosi;

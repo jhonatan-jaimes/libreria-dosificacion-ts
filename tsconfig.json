@@ -1,41 +1,44 @@
 {
   "compilerOptions": {
     /* Lenguaje y Entorno */
-    "target": "ES2020", // Compatibilidad moderna
-    "lib": ["ES2020", "DOM"], // APIs disponibles
-    "module": "CommonJS", // Sistema de módulos
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM"],
+    "module": "CommonJS",
+    
     /* Generación de Archivos */
-    "declaration": true, // ✅ Genera .d.ts
-    "declarationMap": true, // ✅ Mapas para debugging de tipos
-    "sourceMap": true, // ✅ Mapas para debugging de código
-    "outDir": "./dist", // ✅ Donde van los archivos compilados
-    "rootDir": "./src", // ✅ Raíz de los archivos fuente
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "./",  // ✅ Cambiado a raíz del proyecto
+
+    /* Configuración de Módulos */
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
 
     /* Configuración de Tipos */
-    "strict": true, // ✅ Todas las verificaciones estrictas
-    "esModuleInterop": true, // ✅ Compatibilidad con módulos CommonJS/ES6
-    "skipLibCheck": true, // ✅ Salta verificación de librerías
-    "forceConsistentCasingInFileNames": true, // ✅ Nombres de archivo consistentes
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
 
     /* Características Adicionales */
-    "allowSyntheticDefaultImports": true, // ✅ Importaciones por defecto sintéticas
-    "resolveJsonModule": true, // ✅ Importar archivos JSON
-    "removeComments": false, // ❌ Mantener comentarios (útil para usuarios)
+    "removeComments": false,
 
     /* Configuraciones de Calidad de Código */
-    "noUnusedLocals": true, // ✅ Error en variables no usadas
-    "noUnusedParameters": true, // ✅ Error en parámetros no usados
-    "exactOptionalPropertyTypes": true, // ✅ Tipos opcionales exactos
-    "noImplicitReturns": true, // ✅ Error en returns implícitos
-    "noFallthroughCasesInSwitch": true, // ✅ Error en fallthrough en switch
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
 
     /* Emitición */
-    "newLine": "lf", // ✅ Saltos de línea consistentes
-    "stripInternal": true, // ✅ No emitir código marcado como @internal
+    "newLine": "lf",
+    "stripInternal": true
   },
   "include": [
     "src/**/*.ts",
-    "index.ts" // ✅ Incluir index.ts raíz si existe
+    "main.ts"  // ✅ Incluir main.ts de la raíz
   ],
   "exclude": [
     "node_modules",
@@ -45,6 +48,6 @@
     "**/__tests__/**"
   ],
   "ts-node": {
-    "transpileOnly": true // ✅ Para desarrollo con ts-node
+    "transpileOnly": true
   }
 }
