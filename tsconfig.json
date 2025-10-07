@@ -2,43 +2,40 @@
   "compilerOptions": {
     /* Lenguaje y Entorno */
     "target": "ES2020",
-    "lib": ["ES2020", "DOM"],
+    "lib": [
+      "ES2020",
+      "DOM"
+    ],
     "module": "CommonJS",
-    
     /* Generación de Archivos */
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
     "outDir": "./dist",
-    "rootDir": "./",  // ✅ Cambiado a raíz del proyecto
-
+    "rootDir": "./", // ✅ Cambiado a raíz del proyecto
     /* Configuración de Módulos */
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
-
     /* Configuración de Tipos */
     "strict": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-
     /* Características Adicionales */
     "removeComments": false,
-
     /* Configuraciones de Calidad de Código */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "exactOptionalPropertyTypes": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-
     /* Emitición */
     "newLine": "lf",
     "stripInternal": true
   },
   "include": [
     "src/**/*.ts",
-    "main.ts"  // ✅ Incluir main.ts de la raíz
+    "Main.ts" // ✅ Incluir main.ts de la raíz
   ],
   "exclude": [
     "node_modules",

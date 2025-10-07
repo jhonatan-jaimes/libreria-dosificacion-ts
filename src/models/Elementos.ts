@@ -1,129 +1,62 @@
-import { Mortero, Concreto } from "../utils";
-import { Medidas2D, Medidas3D } from "../utils";
+import { Medidas3D } from "../utils";
 
-export interface Material {}
+export class Elemento {
+    private tipo: string;
+    private cantidad: number;
 
-export class ElementoMortero implements Material {
-  material: string;
-  dosificacion: string;
-  oneMortero: Mortero;
-  allMortero: Mortero;
+    constructor(tipo: string, cantidad: number) {
+        this.tipo = tipo;
+        this.cantidad = cantidad;
+    }
 
-  constructor(
-    material: string,
-    dosificacion: string,
-    oneMortero: Mortero,
-    allMortero: Mortero
-  ) {
-    this.material = material;
-    this.dosificacion = dosificacion;
-    this.oneMortero = oneMortero;
-    this.allMortero = allMortero;
-  }
+    public getTipo(): string {
+        return this.tipo;
+    }
 
-  getMaterial(): string {
-    return this.material;
-  }
+    public setTipo(tipo: string): void {
+        this.tipo = tipo;
+    }
 
-  setMaterial(material: string): void {
-    this.material = material;
-  }
+    public getCantidad(): number {
+        return this.cantidad;
+    }
 
-  getDosificacion(): string {
-    return this.dosificacion;
-  }
-
-  setDosificacion(dosificacion: string): void {
-    this.dosificacion = dosificacion;
-  }
-
-  getOneMortero(): Mortero {
-    return this.oneMortero;
-  }
-
-  setOneMortero(oneMortero: Mortero): void {
-    this.oneMortero = oneMortero;
-  }
-
-  getAllMortero(): Mortero {
-    return this.allMortero;
-  }
-
-  setAllMortero(allMortero: Mortero): void {
-    this.allMortero = allMortero;
-  }
+    public setCantidad(cantidad: number): void {
+        this.cantidad = cantidad;
+    }
 }
 
-export class ElementoConcreto implements Material {
-  private material: string;
-  private dosificacion: string;
-  private oneConcreto: Concreto;
-  private allConcreto: Concreto;
+export class Columna extends Elemento {
+    private medidas: Medidas3D;
 
-  constructor(material: string, dosificacion: string, oneConcreto: Concreto, allConcreto: Concreto
-  ) {
-    this.material = material;
-    this.dosificacion = dosificacion;
-    this.oneConcreto = oneConcreto;
-    this.allConcreto = allConcreto;
-  }
+    constructor(tipo: string, cantidad: number, medidas: Medidas3D) {
+        super(tipo, cantidad);
+        this.medidas = medidas;
+    }
 
-  getMaterial(): string {
-    return this.material;
-  }
+    public getMedidas(): Medidas3D {
+        return this.medidas;
+    }
 
-  setMaterial(material: string): void {
-    this.material = material;
-  }
+    public setMedidas(medidas: Medidas3D): void {
+        this.medidas = medidas;
+    }
 
-  getDosificacion(): string {
-    return this.dosificacion;
-  }
-
-  setDosificacion(dosificacion: string): void {
-    this.dosificacion = dosificacion;
-  }
-
-  getOneConcreto(): Concreto {
-    return this.oneConcreto;
-  }
-
-  setOneConcreto(oneConcreto: Concreto): void {
-    this.oneConcreto = oneConcreto;
-  }
-
-  getAllConcreto(): Concreto {
-    return this.allConcreto;
-  }
-
-  setAllConcreto(allConcreto: Concreto): void {
-    this.allConcreto = allConcreto;
-  }
 }
 
-export class Ladrillo extends Medidas3D {
-  private nombre: string;
-  private cantidad: number;
+export class Viga extends Elemento {
+    private medidas: Medidas3D;
 
-  constructor(largo: number, ancho: number, alto: number, nombre: string, cantidad: number) {
-    super(largo, ancho, alto);
-    this.nombre = nombre;
-    this.cantidad = cantidad;
-  }
+    constructor(tipo: string, cantidad: number, medidas: Medidas3D) {
+        super(tipo, cantidad);
+        this.medidas = medidas;
+    }
 
-  getNombre(): string {
-    return this.nombre;
-  }
+    public getMedidas(): Medidas3D {
+        return this.medidas;
+    }
 
-  setNombre(nombre: string): void {
-    this.nombre = nombre;
-  }
-
-  getCantidad(): number {
-    return this.cantidad;
-  }
-
-  setCantidad(cantidad: number): void {
-    this.cantidad = cantidad;
-  }
+    public setMedidas(medidas: Medidas3D): void {
+        this.medidas = medidas;
+    }
 }

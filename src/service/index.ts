@@ -1,4 +1,4 @@
-import { MaterialesService } from "./MaterialesService";
-import { MaterialesImplement } from "./MaterialesImplement";
+import { MaterialesService } from "./InsumoService";
+import { MaterialesImplement } from "./InsumoImplement";
 
 export const material: MaterialesService = new MaterialesImplement();
