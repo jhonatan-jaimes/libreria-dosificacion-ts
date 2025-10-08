@@ -37,7 +37,8 @@
     "stripInternal": true
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "Main.ts"
   ],
   "exclude": [
     "node_modules",
