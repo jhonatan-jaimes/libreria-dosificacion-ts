@@ -69,20 +69,26 @@ function calcularDosificacion(material: Dosificacion, dosificacion: string, area
   }
 }
 
+/**
+ * 
+ * @param medida 
+ * @param altura 
+ * @returns 
+ */
 function calcularMuro(medida: number, altura: number): number {
-  const area = Math.round(((medida * Transform.METROS_TO_MILIMETROS) * (altura * Transform.METROS_TO_MILIMETROS) 
+  const area = Math.round(((medida * Transform.METROS_TO_MILIMETROS) * (altura * Transform.METROS_TO_MILIMETROS)
     / Transform.MILIMETROS2_TO_METROS2) * 100) / 100;
   return area;
 }
 
 function calcularLadrillos(area: number, ladrillo: string): number {
   const name = ladrillo.toLowerCase();
-  switch(name) {
-    case Ladrillo.STANDAR : {
-      return Math.round(((area * Transform.METROS2_TO_MILIMETROS2) / (Block.STANDAR * Transform.METROS2_TO_MILIMETROS2)) 
+  switch (name) {
+    case Ladrillo.STANDAR: {
+      return Math.round(((area * Transform.METROS2_TO_MILIMETROS2) / (Block.STANDAR * Transform.METROS2_TO_MILIMETROS2))
         * 100) / 100;
     }
-    default : {
+    default: {
       throw new Error("Ladrillo no encontrado " + ladrillo);
     }
   }

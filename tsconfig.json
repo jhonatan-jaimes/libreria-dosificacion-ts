@@ -10,7 +10,7 @@
     "declarationMap": true,
     "sourceMap": true,
     "outDir": "./dist",
-    "rootDir": "./src",  // ✅ Cambiado a raíz del proyecto
+    "rootDir": "./",  // ✅ Cambiado a raíz del proyecto
 
     /* Configuración de Módulos */
     "esModuleInterop": true,
