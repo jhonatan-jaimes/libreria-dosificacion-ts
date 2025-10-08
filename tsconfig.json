@@ -10,7 +10,7 @@
     "declarationMap": true,
     "sourceMap": true,
     "outDir": "./dist",
-    "rootDir": "./",  // ✅ Cambiado a raíz del proyecto
+    "rootDir": "./src",  // ✅ Cambiado a raíz del proyecto
 
     /* Configuración de Módulos */
     "esModuleInterop": true,
@@ -37,8 +37,7 @@
     "stripInternal": true
   },
   "include": [
-    "src/**/*.ts",
-    "main.ts"  // ✅ Incluir main.ts de la raíz
+    "src/**/*.ts"
   ],
   "exclude": [
     "node_modules",
