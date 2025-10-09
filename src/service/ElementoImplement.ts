@@ -3,23 +3,62 @@ import { Medidas2D, Medidas3D } from "../utils";
 import { ElementoService } from "./ElementoService";
 import { Transform } from "../utils";
 
+function areaOne(medidas: any): number {
+    if(medidas !instanceof Medidas2D || medidas !instanceof Medidas3D){
+        throw new Error("Clase medidas no autorizado");
+    }
+
+    if(medidas instanceof Medidas3D){
+
+        return Math.round(((medidas.getLargo() * Transform.METROS_TO_MILIMETROS) *
+            (medidas.getAncho() * Transform.METROS_TO_MILIMETROS) * (medidas.getAlto() * Transform.METROS_TO_MILIMETROS) / 
+            Transform.MILIMETROS3_TO_METROS3) * 100) / 100;
+
+    } else if (medidas instanceof Medidas2D) {
+
+        return Math.round(((medidas.getLargo() * Transform.METROS_TO_MILIMETROS) *
+            (medidas.getAncho() * Transform.METROS_TO_MILIMETROS) / Transform.MILIMETROS2_TO_METROS2) * 100) / 100;
+
+    }
+  throw new Error("No se puede calcular el area unidad");
+}
+
+function areaAll(medidas: any, cantidad: number): number {
+    if(medidas !instanceof Medidas2D || medidas !instanceof Medidas3D){
+        throw new Error("Clase medidas no autorizado");
+    }
+
+    if(cantidad === null){
+        throw new Error("Cantidad requerida");
+    }
+
+    if(medidas instanceof Medidas3D){
+
+        return Math.round((((medidas.getLargo() * Transform.METROS_TO_MILIMETROS) *
+        (medidas.getAncho() * Transform.METROS_TO_MILIMETROS) * (medidas.getAlto() * Transform.METROS_TO_MILIMETROS) /
+        Transform.MILIMETROS3_TO_METROS3) * cantidad) * 100) / 100;
+
+    } else if (medidas instanceof Medidas2D) {
+
+        return Math.round((((medidas.getLargo() * Transform.METROS_TO_MILIMETROS) *
+        (medidas.getAncho() * Transform.METROS_TO_MILIMETROS) / Transform.MILIMETROS2_TO_METROS2) * 
+        cantidad) * 100) / 100;
+
+    }
+
+    throw new Error("No se puede calcular el area unidad");
+}
+
 function areas(medidas: any, cantidad: number): Areas {
     if (medidas instanceof Medidas3D) {
         return new Areas(
-            Math.round(((medidas.getLargo() * Transform.METROS_TO_MILIMETROS) *
-                (medidas.getAncho() * Transform.METROS_TO_MILIMETROS) * (medidas.getAlto() * Transform.METROS_TO_MILIMETROS) / 
-                Transform.MILIMETROS3_TO_METROS3) * 100) / 100,
-            Math.round((((medidas.getLargo() * Transform.METROS_TO_MILIMETROS) *
-                (medidas.getAncho() * Transform.METROS_TO_MILIMETROS) * (medidas.getAlto() * Transform.METROS_TO_MILIMETROS) /
-                Transform.MILIMETROS3_TO_METROS3) * cantidad) * 100) / 100
+            areaOne(medidas),
+            areaAll(medidas, cantidad)
         );
     } else if (medidas instanceof Medidas2D) {
         return new Areas(
-            Math.round(((medidas.getLargo() * Transform.METROS_TO_MILIMETROS) *
-                (medidas.getAncho() * Transform.METROS_TO_MILIMETROS) / Transform.MILIMETROS2_TO_METROS2) * 100) / 100,
-            Math.round((((medidas.getLargo() * Transform.METROS_TO_MILIMETROS) *
-                (medidas.getAncho() * Transform.METROS_TO_MILIMETROS) / Transform.MILIMETROS2_TO_METROS2) * 
-                cantidad) * 100) / 100
+            areaOne(medidas),
+            areaAll(medidas, cantidad)
         );
     } else {
         throw new Error("Tipo de medidas no soportado");

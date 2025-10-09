@@ -1,6 +1,6 @@
 import { Mortero, Concreto, Dosificacion } from "../models";
 import { ElementoMortero, ElementoConcreto, Material } from "../models";
-import { MaterialesService } from "./InsumoService";
+import { InsumoService } from "./InsumoService";
 import { tablaMortero, tablaConcreto, Recurso, Area, Transform, Ladrillo, Block } from "../utils";
 
 function getDosificacion(dosificacion: string, material: string): Dosificacion {
@@ -96,7 +96,7 @@ function calcularLadrillos(area: number, ladrillo: string): number {
   }
 }
 
-export class MaterialesImplement implements MaterialesService {
+export class InsumoImplement implements InsumoService {
   ladrillo(medida: number, altura: number, ladrillo: string): number {
     const area = calcularMuro(medida, altura);
 
