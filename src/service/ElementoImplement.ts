@@ -83,11 +83,11 @@ export class ElementoImplement implements ElementoService {
 
     /**
      * 
-     * @param nombre Debe colocarce el nombre que tipo de elemento es
-     * @param cantidad cantidad de elementos
-     * @param largoOrMedidas Si no tieme las medidas creadas tiene que enviar el largo
-     * @param ancho y el ancho
-     * @returns y se devolvera el elemento con el area calculada
+     * @param nombre            Debe colocarce el nombre que tipo de elemento es
+     * @param cantidad          cantidad de elementos
+     * @param largoOrMedidas    Si no tieme las medidas creadas tiene que enviar el largo
+     * @param ancho             y el ancho
+     * @returns                 y se devolvera el elemento con el area calculada
      */
     elemento2D(nombre: string, cantidad: number, largoOrMedidas?: number | Medidas2D, ancho?: number): Elemento2D {
 

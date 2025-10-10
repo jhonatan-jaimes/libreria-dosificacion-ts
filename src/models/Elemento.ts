@@ -1,10 +1,9 @@
 import { Areas } from "./Areas";
-import { Elemento3D } from "./Elemento3D";
 
 export class Elemento {
-    private tipo: string;
-    private cantidad: number;
-    private area: Areas;
+    private tipo        : string;
+    private cantidad    : number;
+    private area        : Areas;
 
     constructor(tipo: string, cantidad: number, area: Areas) {
         this.tipo = tipo;
