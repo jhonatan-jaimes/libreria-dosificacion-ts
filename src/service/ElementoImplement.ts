@@ -1,5 +1,5 @@
 import { Elemento3D, Elemento2D, Areas } from "../models";
-import { Medidas2D, Medidas3D } from "../utils";
+import { Medidas2D, Medidas3D } from "../models";
 import { ElementoService } from "./ElementoService";
 import { Transform } from "../utils";
 
